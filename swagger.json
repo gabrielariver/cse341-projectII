@@ -1,0 +1,233 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Books API",
+    "version": "1.0.0",
+    "description": "RESTful API to manage books and authors stored in a MongoDB collection"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api"
+    }
+  ],
+  "paths": {
+    "/books": {
+      "get": {
+        "summary": "Retrieve all books",
+        "responses": {
+          "200": {
+            "description": "List of books",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Book" }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new book",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Book successfully created"
+          },
+          "400": {
+            "description": "Missing required fields"
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "summary": "Get a book by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "MongoDB ObjectId of the book",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Book found" },
+          "400": { "description": "Invalid ID format" },
+          "404": { "description": "Book not found" }
+        }
+      },
+      "put": {
+        "summary": "Update a book by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Book"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Book successfully updated" },
+          "404": { "description": "Book not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a book by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Book successfully deleted" },
+          "404": { "description": "Book not found" }
+        }
+      }
+    },
+    "/authors": {
+      "get": {
+        "summary": "Retrieve all authors",
+        "responses": {
+          "200": {
+            "description": "List of authors"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new author",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Author created"
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/authors/{id}": {
+      "get": {
+        "summary": "Get an author by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Author found" },
+          "404": { "description": "Author not found" }
+        }
+      },
+      "put": {
+        "summary": "Update an author by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Author"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Author updated" },
+          "404": { "description": "Author not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete an author by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Author deleted" },
+          "404": { "description": "Author not found" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Book": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "example": "To Kill a Mockingbird" },
+          "author": { "type": "string", "example": "Harper Lee" },
+          "genre": { "type": "string", "example": "Southern Gothic" },
+          "year": { "type": "integer", "example": 1960 },
+          "pages": { "type": "integer", "example": 281 },
+          "language": { "type": "string", "example": "English" },
+          "available": { "type": "boolean", "example": false }
+        },
+        "required": ["title", "author"]
+      },
+      "Author": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string", "example": "Harper Lee" },
+          "birthYear": { "type": "integer", "example": 1926 },
+          "nationality": { "type": "string", "example": "American" },
+          "biography": {
+            "type": "string",
+            "example": "Author of the Pulitzer Prize-winning novel 'To Kill a Mockingbird', published in 1960."
+          }
+        },
+        "required": ["name", "birthYear", "nationality"]
+      }
+    }
+  }
+}
