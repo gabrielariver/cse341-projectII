@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://cse341-projectii.onrender.com"
+      "url": "https://cse341-projectii.onrender.com/api"
     }
   ],
   "paths": {
