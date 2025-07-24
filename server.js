@@ -9,7 +9,7 @@ require('dotenv').config();
 const session = require('express-session');
 const passport = require('passport');
 require('./services/passport');
-const authRoutes = require('./routes/oauth');
+const oauthRoutes = require('./routes/oauth');
 
 const app = express(); 
 const port = process.env.PORT || 3000; 
@@ -30,7 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
-app.use('/auth', authRoutes);
+app.use('/auth', oauthRoutes);
 swaggerSetup(app);
 app.use('/api/books', booksRoutes);
 app.use('/api/authors', authorsRoutes);
