@@ -11,6 +11,29 @@
     }
   ],
   "paths": {
+    "/auth/github": {
+      "get": {
+        "summary": "Login with GitHub",
+        "description": "Redirects the user to GitHub for OAuth authentication.",
+        "responses": {
+          "302": {
+            "description": "Redirects to GitHub for login"
+          }
+        }
+      }
+    },
+    "/auth/github/callback": {
+      "get": {
+        "summary": "GitHub OAuth Callback",
+        "description": "Callback endpoint from GitHub after successful authentication.",
+        "responses": {
+          "302": {
+            "description": "Redirects to the homepage or API dashboard"
+          }
+        }
+      }
+    },
+
     "/books": {
       "get": {
         "summary": "Retrieve all books",
@@ -201,6 +224,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "connect.sid"
+      }
+    },
     "schemas": {
       "Book": {
         "type": "object",
