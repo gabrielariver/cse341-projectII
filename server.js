@@ -9,7 +9,7 @@ require('dotenv').config();
 const session = require('express-session');
 const passport = require('passport');
 require('./services/passport');
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./routes/oauth');
 
 const app = express(); 
 const port = process.env.PORT || 3000; 
