@@ -33,7 +33,6 @@
         }
       }
     },
-
     "/books": {
       "get": {
         "summary": "Retrieve all books",
@@ -53,23 +52,18 @@
       },
       "post": {
         "summary": "Create a new book",
+        "security": [ { "cookieAuth": [] } ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Book"
-              }
+              "schema": { "$ref": "#/components/schemas/Book" }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Book successfully created"
-          },
-          "400": {
-            "description": "Missing required fields"
-          }
+          "201": { "description": "Book successfully created" },
+          "400": { "description": "Missing required fields" }
         }
       }
     },
@@ -80,11 +74,8 @@
           {
             "name": "id",
             "in": "path",
-            "description": "MongoDB ObjectId of the book",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
@@ -95,6 +86,7 @@
       },
       "put": {
         "summary": "Update a book by ID",
+        "security": [ { "cookieAuth": [] } ],
         "parameters": [
           {
             "name": "id",
@@ -107,9 +99,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Book"
-              }
+              "schema": { "$ref": "#/components/schemas/Book" }
             }
           }
         },
@@ -120,6 +110,7 @@
       },
       "delete": {
         "summary": "Delete a book by ID",
+        "security": [ { "cookieAuth": [] } ],
         "parameters": [
           {
             "name": "id",
@@ -138,30 +129,23 @@
       "get": {
         "summary": "Retrieve all authors",
         "responses": {
-          "200": {
-            "description": "List of authors"
-          }
+          "200": { "description": "List of authors" }
         }
       },
       "post": {
         "summary": "Create a new author",
+        "security": [ { "cookieAuth": [] } ],
         "requestBody": {
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Author"
-              }
+              "schema": { "$ref": "#/components/schemas/Author" }
             }
           }
         },
         "responses": {
-          "201": {
-            "description": "Author created"
-          },
-          "400": {
-            "description": "Invalid input"
-          }
+          "201": { "description": "Author created" },
+          "400": { "description": "Invalid input" }
         }
       }
     },
@@ -183,6 +167,7 @@
       },
       "put": {
         "summary": "Update an author by ID",
+        "security": [ { "cookieAuth": [] } ],
         "parameters": [
           {
             "name": "id",
@@ -195,9 +180,7 @@
           "required": true,
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Author"
-              }
+              "schema": { "$ref": "#/components/schemas/Author" }
             }
           }
         },
@@ -208,6 +191,7 @@
       },
       "delete": {
         "summary": "Delete an author by ID",
+        "security": [ { "cookieAuth": [] } ],
         "parameters": [
           {
             "name": "id",
