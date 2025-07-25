@@ -35,6 +35,15 @@ swaggerSetup(app);
 app.use('/api/books', booksRoutes);
 app.use('/api/authors', authorsRoutes);
 
+// route after login
+app.get('/', (req, res) => {
+  res.send(`
+    <h2>You are successfully logged in with GitHub!</h2>
+    <p>Access the <a href="/api-docs">Swagger UI</a> to test the API.</p>
+    <p><a href="/auth/logout">Log out</a></p>
+  `);
+});
+
 // mongodb conection
 initDb((err) => {
   if (err) console.error(err);
