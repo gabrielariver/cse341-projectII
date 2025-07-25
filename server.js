@@ -22,9 +22,11 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: process.env.NODE_ENV === 'production'
+    secure: true,        
+    sameSite: 'none'        
   }
 }));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
