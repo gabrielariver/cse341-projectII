@@ -12,6 +12,7 @@ require('./services/passport');
 const oauthRoutes = require('./routes/oauth');
 
 const app = express(); 
+app.set('trust proxy', 1);
 const port = process.env.PORT || 3000; 
 
 // middlewares
