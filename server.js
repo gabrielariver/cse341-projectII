@@ -42,9 +42,11 @@ app.use('/api/authors', authorsRoutes);
 app.get('/', (req, res) => {
   res.send(`
     <h2>You are successfully logged in with GitHub!</h2>
-    <p>Access the <a href="/api-docs">Swagger UI</a> to test the API.</p>
-    <p><a href="/auth/logout">Log out</a></p>
-  `);
+    <p>Access the <a href="/api-docs">Swagger UI</a> to test the API.</p>`);
+});
+app.get('/logged-out', (req, res) => {
+  res.send(`
+    <h2>You have been logged out.</h2> `);
 });
 
 // mongodb conection
